@@ -25,7 +25,7 @@ x = tf.compat.v1.placeholder('float')
 y = tf.compat.v1.placeholder('float')
 print("HIDDEN LAYER 1")
 hidden_1_layer = {'f_fum': n_nodes_hl1,
-                  'weight': tf.Variable(tf.compat.v1.random_normal([len(train_x[0]), n_nodes_hl1])),
+                  'weight': tf.Variable(tf.truncated_normal([len(train_x[0]), n_nodes_hl1])),
                   'bias': tf.Variable(tf.compat.v1.random_normal([n_nodes_hl1]))}
 print("HIDDEN LAYER 2")
 hidden_2_layer = {'f_fum': n_nodes_hl2,

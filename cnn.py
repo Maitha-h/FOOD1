@@ -171,4 +171,4 @@ with tf.Session(graph=graph) as session:
 
 # print('Test accuracy: %.1f%%' % accuracy(test_prediction.eval(), test_y))
 
-  # Test accuracy: 95.2%
+# Test accuracy: 95.2%

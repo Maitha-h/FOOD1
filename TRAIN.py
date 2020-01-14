@@ -12,7 +12,7 @@ print("X", len(test_x))
 test_y = pickle.load(open("y_test.pickle", "rb"))
 print("y", len(test_y))
 print("DATA LOADED")
-
+train_x = train_x / 255.0
 n_classes = 3
 batch_size = 32
 print("Building placeholders")
@@ -35,7 +35,7 @@ def maxpool2d(x):
 def convolutional_neural_network(x):
     print("Building Network")
     weights = {'W_conv1': tf.Variable(tf.random_normal([11, 11, 3, 32])),
-               'W_conv2': tf.Variable(tf.random_normal([5, 5, 32, 64])),
+               'W_conv2': tf.Variable(tf.random_normal([9, 9, 32, 64])),
                'W_fc': tf.Variable(tf.random_normal([7 * 7 * 64, 1024])),  # 1024 is the number of nodes
                'out': tf.Variable(tf.random_normal([1024, n_classes]))}
 
@@ -54,7 +54,7 @@ def convolutional_neural_network(x):
     conv2 = tf.nn.relu(conv2d(conv1, weights['W_conv2']))
     conv2 = maxpool2d(conv2)
     print("Building fully connected layer")
-    fc = tf.reshape(conv2, [-1, 64 * 64 * 64])
+    fc = tf.reshape(conv2, [-1, 7 * 7 * 64])
     fc = tf.nn.relu(tf.matmul(fc, weights['W_fc']))
     fc = tf.nn.dropout(fc, keep_rate)
     print("Building output layer")
